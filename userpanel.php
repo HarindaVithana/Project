@@ -98,7 +98,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="./userhistrory.html">
+          <a class="nav-link collapsed" href="./userhistrory.php">
             <i class="bi bi-envelope"></i>
             <span>Lisence update history</span>
           </a>

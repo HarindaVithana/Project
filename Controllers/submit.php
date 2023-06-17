@@ -1,7 +1,7 @@
 <?php 
 include "../config.php";
 
-var_dump($_POST);
+// var_dump($_POST);
 // Retrieve form data
 $NIC = $_POST['inputNIC'];
 $Email = $_POST['inputEmail'];
@@ -23,12 +23,20 @@ $sql = "INSERT INTO `renewals`(`nic`, `email`, `date`, `medical`, `renewal_type`
 
 // Execute the query
 if ($mysqli->query($sql) === TRUE) {
-    echo "Record inserted successfully.";
+    // Close the connection
+    $mysqli->close();
+    echo '<script type="text/javascript">'; 
+    echo 'alert("Your Renewal form submitted");'; 
+    echo 'window.location.href = "../index.php";';
+    echo '</script>';
 } else {
     echo "Error: " . $mysqli->error;
+
+    // Close the connection
+    $mysqli->close();
 }
 
-// Close the connection
-$mysqli->close();
+
+
 
 ?>

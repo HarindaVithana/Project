@@ -7,7 +7,7 @@
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
       $myusername = mysqli_real_escape_string($con,$_POST['email']);
-      $mypassword = mysqli_real_escape_string($con,$_POST['password']); 
+      $mypassword = sha1(mysqli_real_escape_string($con,$_POST['password'])); 
       
       $sql = "SELECT nic, type FROM users WHERE email = '$myusername' and password = '$mypassword'";
       $result = mysqli_query($con,$sql);
