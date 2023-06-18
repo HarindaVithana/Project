@@ -18,14 +18,19 @@
 
       if($count == 1) {
         $_SESSION['nic'] = $row['nic'];
-         $_SESSION['login_user'] = $myusername;
-         if ($row['type'] == "user") {
-            header("location: userpanel.php");
-         } elseif ($row['type'] == "admin") {
-            header("location: userpanel.php");
-         }
-      } else {
-         $error = "Your Login Name or Password is invalid";
+        $_SESSION['login_user'] = $myusername;
+
+        if ($row['type'] == "user") 
+        {
+          header("location: userpanel.php");
+        } elseif ($row['type'] == "admin") 
+        {
+          header("location: userpanel.php");
+        }
+      } 
+      else 
+      {
+        $error = "Your Login Name or Password is invalid";
       }
    }
 ?>
@@ -132,11 +137,11 @@
                       </div>
                       <div class="col-12">
                         <button class="btn btn-primary w-100" type="submit">
-                          <a href="./userpanel.html"></a>
+                          <a href="./userpanel.php"></a>
                           Login
                         </button>
                       </div>
-                      <a href="./userpanel.html">Login</a>
+                      <a href="./userpanel.php">Login</a>
                       <div class="col-12">
                         <p class="small mb-0">
                           Don't have account?

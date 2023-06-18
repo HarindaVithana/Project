@@ -1,3 +1,20 @@
+<?php
+  include("config.php");
+  session_start();
+
+  $var_value = $_SESSION['login_user'];
+  $nic = $_SESSION['nic'];
+
+  // $login_user = $_GET['login_user'];
+  echo $login_user;
+  // $sql = "SELECT * FROM users WHERE email = '$login_user'";
+  // $result = mysqli_query($db,$sql);
+  // $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+  // $count = mysqli_num_rows($result);
+  // $fullname = $row['name'];
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,7 +65,7 @@
                 class="rounded-circle"
               />
               <span class="d-none d-md-block dropdown-toggle ps-2"
-                >Dinusha Weerakoon</span
+                ><?php echo $var_value; ?></span
               >
             </a>
             <ul
@@ -75,7 +92,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./renewal.html">
+          <a class="nav-link" href="./renewal.php">
             <i class="bi bi-grid"></i>
             <span>Renew Your Lisence</span>
           </a>
@@ -87,7 +104,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="./index.html">
+          <a class="nav-link collapsed" href="./index.php">
             <i class="bi bi-envelope"></i>
             <span>Logout</span>
           </a>
@@ -100,7 +117,7 @@
         <h1>Renew Driving Lisence Form</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
             <li class="breadcrumb-item active">Form</li>
           </ol>
         </nav>

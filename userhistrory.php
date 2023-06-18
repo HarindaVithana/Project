@@ -4,8 +4,9 @@ include "config.php";
 $conn = mysqli_connect($host, $username, $password, $database);
 
 // Check if the connection was successful
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+if (!$conn) 
+{
+  die("Connection failed: " . mysqli_connect_error());
 }
 
 $query = "SELECT * FROM `licence`";
@@ -14,9 +15,16 @@ $query = "SELECT * FROM `licence`";
 $result = mysqli_query($conn, $query);
 
 // Check if the query was successful
-if (!$result) {
-    die("Query failed: " . mysqli_error($conn));
+if (!$result) 
+{
+  die("Query failed: " . mysqli_error($conn));
 }
+
+include("config.php");
+session_start();
+
+$var_value = $_SESSION['login_user'];
+$nic = $_SESSION['nic'];
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +77,7 @@ if (!$result) {
                 class="rounded-circle"
               />
               <span class="d-none d-md-block dropdown-toggle ps-2"
-                >Dinusha Weerakoon</span
+                ><?php echo $var_value ?></span
               >
             </a>
             <ul
@@ -90,13 +98,13 @@ if (!$result) {
     <aside id="sidebar" class="sidebar">
       <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-          <a class="nav-link collapsed" href="./userpanel.html">
+          <a class="nav-link collapsed" href="./userpanel.php">
             <i class="bi bi-envelope"></i>
             <span>Status</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="./renewal.html">
+          <a class="nav-link collapsed" href="./renewal.php">
             <i class="bi bi-envelope"></i>
             <span>Renew Your Lisence</span>
           </a>
@@ -108,7 +116,7 @@ if (!$result) {
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="./index.html">
+          <a class="nav-link collapsed" href="./index.php">
             <i class="bi bi-envelope"></i>
             <span>Logout</span>
           </a>
@@ -121,7 +129,7 @@ if (!$result) {
         <h1>Data Tables</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
             <li class="breadcrumb-item">Tables</li>
             <li class="breadcrumb-item active">Data</li>
           </ol>

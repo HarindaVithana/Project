@@ -66,7 +66,7 @@
                 class="rounded-circle"
               />
               <span class="d-none d-md-block dropdown-toggle ps-2"
-                ><?php echo $nic ?></span
+                ><?php echo $var_value ?></span
               > </a >
             <ul
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
@@ -86,13 +86,13 @@
     <aside id="sidebar" class="sidebar">
       <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="./userpanel.html">
+          <a class="nav-link" href="./userpanel.php">
             <i class="bi bi-grid"></i>
             <span>Status</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="./renewal.html">
+          <a class="nav-link collapsed" href="./renewal.php">
             <i class="bi bi-envelope"></i>
             <span>Renew Your Lisence</span>
           </a>
@@ -104,7 +104,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="./index.html">
+          <a class="nav-link collapsed" href="./index.php">
             <i class="bi bi-envelope"></i>
             <span>Logout</span>
           </a>
@@ -117,7 +117,7 @@
         <h1>Dashboard</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
             <li class="breadcrumb-item active">Dashboard</li>
           </ol>
         </nav>
