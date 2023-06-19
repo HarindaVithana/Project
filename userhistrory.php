@@ -1,3 +1,32 @@
+<?php
+include "config.php";
+
+$conn = mysqli_connect($host, $username, $password, $database);
+
+// Check if the connection was successful
+if (!$conn) 
+{
+  die("Connection failed: " . mysqli_connect_error());
+}
+
+$query = "SELECT * FROM `licence`";
+
+// Execute the query
+$result = mysqli_query($conn, $query);
+
+// Check if the query was successful
+if (!$result) 
+{
+  die("Query failed: " . mysqli_error($conn));
+}
+
+include("config.php");
+session_start();
+
+$var_value = $_SESSION['login_user'];
+$nic = $_SESSION['nic'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,7 +77,7 @@
                 class="rounded-circle"
               />
               <span class="d-none d-md-block dropdown-toggle ps-2"
-                >Dinusha Weerakoon</span
+                ><?php echo $var_value ?></span
               >
             </a>
             <ul
@@ -69,25 +98,25 @@
     <aside id="sidebar" class="sidebar">
       <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-          <a class="nav-link collapsed" href="./userpanel.html">
+          <a class="nav-link collapsed" href="./userpanel.php">
             <i class="bi bi-envelope"></i>
             <span>Status</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="./renewal.html">
+          <a class="nav-link collapsed" href="./renewal.php">
             <i class="bi bi-envelope"></i>
             <span>Renew Your Lisence</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./userhistrory.html">
+          <a class="nav-link" href="./userhistrory.php">
             <i class="bi bi-grid"></i>
             <span>Lisence update history</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="./index.html">
+          <a class="nav-link collapsed" href="./index.php">
             <i class="bi bi-envelope"></i>
             <span>Logout</span>
           </a>
@@ -100,7 +129,7 @@
         <h1>Data Tables</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
             <li class="breadcrumb-item">Tables</li>
             <li class="breadcrumb-item active">Data</li>
           </ol>
@@ -131,77 +160,27 @@
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Nic</th>
-                      <th scope="col">Start Date</th>
-                      <th scope="col">End Date</th>
+                      <th scope="col">Issued Date</th>
+                      <th scope="col">Expire Date</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>123456</td>
-                      <td>2016-05-25</td>
-                      <td>2016-05-25</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>123456</td>
-                      <td>2016-05-25</td>
-                      <td>2016-05-25</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>123456</td>
-                      <td>2016-05-25</td>
-                      <td>2016-05-25</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>123456</td>
-                      <td>2016-05-25</td>
-                      <td>2016-05-25</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>123456</td>
-                      <td>2016-05-25</td>
-                      <td>2016-05-25</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>123456</td>
-                      <td>2016-05-25</td>
-                      <td>2016-05-25</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>123456</td>
-                      <td>2016-05-25</td>
-                      <td>2016-05-25</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>123456</td>
-                      <td>2016-05-25</td>
-                      <td>2016-05-25</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>123456</td>
-                      <td>2016-05-25</td>
-                      <td>2016-05-25</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>123456</td>
-                      <td>2016-05-25</td>
-                      <td>2016-05-25</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>123456</td>
-                      <td>2016-05-25</td>
-                      <td>2016-05-25</td>
-                    </tr>
+                    <?php 
+                      while ($row = mysqli_fetch_assoc($result)) {
+                        $number = $row['license_no'];
+                        $nic = $row['nic'];
+                        $issued = $row['issued_date'];
+                        $expire = $row['expire_date'];
+
+                        echo "<tr>";
+                        echo "<td> $number </td>";
+                        echo "<td> $nic </td>";
+                        echo "<td> $issued </td>";
+                        echo "<td> $expire </td>";
+                        echo "</tr>";
+
+                      }
+                    ?>
                   </tbody>
                 </table>
                 <!-- End Table with stripped rows -->

@@ -1,3 +1,20 @@
+<?php
+  include("config.php");
+  session_start();
+
+  $var_value = $_SESSION['login_user'];
+  $nic = $_SESSION['nic'];
+
+  // $login_user = $_GET['login_user'];
+  echo $login_user;
+  // $sql = "SELECT * FROM users WHERE email = '$login_user'";
+  // $result = mysqli_query($db,$sql);
+  // $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+  // $count = mysqli_num_rows($result);
+  // $fullname = $row['name'];
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,14 +65,14 @@
                 class="rounded-circle"
               />
               <span class="d-none d-md-block dropdown-toggle ps-2"
-                >Dinusha Weerakoon</span
+                ><?php echo $var_value; ?></span
               >
             </a>
             <ul
               class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
             >
               <li>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                <a class="dropdown-item d-flex align-items-center" href="index.php">
                   <i class="bi bi-box-arrow-right"></i>
                   <span>Sign Out</span>
                 </a>
@@ -75,19 +92,19 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="./renewal.html">
+          <a class="nav-link" href="./renewal.php">
             <i class="bi bi-grid"></i>
             <span>Renew Your Lisence</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="./userhistrory.html">
+          <a class="nav-link collapsed" href="./userhistrory.php">
             <i class="bi bi-envelope"></i>
             <span>Lisence update history</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="./index.html">
+          <a class="nav-link collapsed" href="./index.php">
             <i class="bi bi-envelope"></i>
             <span>Logout</span>
           </a>
@@ -100,7 +117,7 @@
         <h1>Renew Driving Lisence Form</h1>
         <nav>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
             <li class="breadcrumb-item active">Form</li>
           </ol>
         </nav>
@@ -112,13 +129,13 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Renew Driving Lisence Form</h5>
-                <form>
+                <form action="Controllers/submit.php" method="post">
                   <div class="row mb-3">
-                    <label for="inputText" class="col-sm-2 col-form-label"
+                    <label for="inputNIC" class="col-sm-2 col-form-label"
                       >NIC</label
                     >
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" />
+                      <input type="text" class="form-control" name="inputNIC" id="inputNIC" required/>
                     </div>
                   </div>
                   <div class="row mb-3">
@@ -127,15 +144,15 @@
                     >
 
                     <div class="col-sm-10">
-                      <input type="number" class="form-control" />
+                      <input type="text" class="form-control" name="inputEmail" id="inputEmail" required/>
                     </div>
                   </div>
                   <div class="row mb-3">
-                    <label for="inputNumber" class="col-sm-2 col-form-label"
+                    <label for="inputMed" class="col-sm-2 col-form-label"
                       >Medical Document</label
                     >
                     <div class="col-sm-10">
-                      <input class="form-control" type="file" id="formFile" />
+                      <input class="form-control" type="file" name="inputMed" id="inputMed" required/>
                     </div>
                   </div>
                   <div class="row mb-3">
@@ -143,7 +160,7 @@
                       >Date apply</label
                     >
                     <div class="col-sm-10">
-                      <input type="date" class="form-control" />
+                      <input type="date" class="form-control" name="inputDate" id="inputDate" required/>
                     </div>
                   </div>
                   <fieldset class="row mb-3">
@@ -157,7 +174,7 @@
                           type="radio"
                           name="gridRadios"
                           id="gridRadios1"
-                          value="option1"
+                          value="immediate"
                           checked
                         />
                         <label class="form-check-label" for="gridRadios1">
@@ -170,7 +187,7 @@
                           type="radio"
                           name="gridRadios"
                           id="gridRadios2"
-                          value="option2"
+                          value="normal"
                         />
                         <label class="form-check-label" for="gridRadios2">
                           Normal
@@ -180,13 +197,15 @@
                   </fieldset>
 
                   <div class="row mb-3">
-                    <label for="inputPassword" class="col-sm-2 col-form-label"
+                    <label for="inputComment" class="col-sm-2 col-form-label"
                       >Comment</label
                     >
                     <div class="col-sm-10">
                       <textarea
                         class="form-control"
                         style="height: 100px"
+                        name="inputComment"
+                        id="inputComment"
                       ></textarea>
                     </div>
                   </div>

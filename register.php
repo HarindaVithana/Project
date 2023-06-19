@@ -36,15 +36,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit(); // Stop further execution
     } else
 
+    $password_e = sha1($password);
     // Insert new user into the database
-    $sql = "INSERT INTO users (name, nic, email, password,type) VALUES ('$name', '$nic', '$email', '$password','$type')";
+    $sql = "INSERT INTO users (name, nic, email, password,type) VALUES ('$name', '$nic', '$email', '$password_e','$type')";
     if (!mysqli_query($con, $sql)) {
         die('Error: ' . mysqli_error($con));
     }
 
-    echo "<div id='general'>";
-    echo "You have signed up successfully.";
-    echo "</div>";
+    echo '<script type="text/javascript">'; 
+    echo 'alert("Your account is created");'; 
+    echo 'window.location.href = "/index.php";';
+    echo '</script>';
 
     mysqli_close($con);
 }
@@ -217,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                       <div class="col-12">
                         <p class="small mb-0">
                           Already have an account?
-                          <a href="./index.html">Log in</a>
+                          <a href="./index.php">Log in</a>
                         </p>
                       </div>
                     </form>
