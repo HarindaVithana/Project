@@ -60,11 +60,6 @@
               href="#"
               data-bs-toggle="dropdown"
             >
-              <img
-                src="assets/img/profile-img.jpg"
-                alt="Profile"
-                class="rounded-circle"
-              />
               <span class="d-none d-md-block dropdown-toggle ps-2"
                 ><?php echo $var_value ?></span
               > </a >
