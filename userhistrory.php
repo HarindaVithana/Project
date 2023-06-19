@@ -1,5 +1,9 @@
 <?php
 include "config.php";
+session_start();
+
+$var_value = $_SESSION['login_user'];
+$nic = $_SESSION['nic'];
 
 $conn = mysqli_connect($host, $username, $password, $database);
 
@@ -9,7 +13,7 @@ if (!$conn)
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$query = "SELECT * FROM `licence`";
+$query = "SELECT * FROM `licence` Where Email = $var_value"; // Vithana94 Added
 
 // Execute the query
 $result = mysqli_query($conn, $query);
@@ -71,11 +75,7 @@ $nic = $_SESSION['nic'];
               href="#"
               data-bs-toggle="dropdown"
             >
-              <img
-                src="assets/img/profile-img.jpg"
-                alt="Profile"
-                class="rounded-circle"
-              />
+
               <span class="d-none d-md-block dropdown-toggle ps-2"
                 ><?php echo $var_value ?></span
               >
